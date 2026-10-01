@@ -47,4 +47,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - imagens/LogoVazada.png
+    - imagens/logo_branca.png
+    - imagens/logo_azul.png

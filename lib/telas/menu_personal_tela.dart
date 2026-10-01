@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -37,13 +38,13 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppCores.fundo,
         elevation: 0,
         title: Text(
           _titulos[_indiceSelecionado],
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+          style: const TextStyle(color: AppCores.texto, fontSize: 20),
         ),
         actions: _indiceSelecionado == 2
             ? []
@@ -57,8 +58,8 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                 });
               },
               child: const CircleAvatar(
-                backgroundColor: Colors.amber,
-                child: Icon(Icons.person, color: Colors.black),
+                backgroundColor: AppCores.primaria,
+                child: Icon(Icons.person, color: AppCores.sobrePrimaria),
               ),
             ),
           ),
@@ -67,9 +68,9 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
       body: _telas[_indiceSelecionado],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceSelecionado,
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.amber,
-        unselectedItemColor: Colors.white70,
+        backgroundColor: AppCores.fundo,
+        selectedItemColor: AppCores.primaria,
+        unselectedItemColor: AppCores.textoSecundario,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
@@ -100,7 +101,7 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return const Center(
-        child: Text("Não autenticado", style: TextStyle(color: Colors.white)),
+        child: Text("Não autenticado", style: TextStyle(color: AppCores.texto)),
       );
     }
 
@@ -116,7 +117,7 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
             padding: const EdgeInsets.all(16),
             margin: const EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
-              color: Colors.amber,
+              color: AppCores.primaria,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -124,7 +125,7 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                 const Text(
                   "Gerenciar Alunos",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: AppCores.sobrePrimaria,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -140,8 +141,8 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.amber,
+                    backgroundColor: AppCores.fundo,
+                    foregroundColor: AppCores.primaria,
                   ),
                   icon: const Icon(Icons.person_add),
                   label: const Text("Vincular Alunos"),
@@ -168,12 +169,12 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.amber,
+                    color: AppCores.primaria,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Text(
                     "Nenhum aluno vinculado",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: AppCores.sobrePrimaria),
                   ),
                 );
               }
@@ -188,7 +189,7 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.amber,
+                  color: AppCores.primaria,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
@@ -197,12 +198,12 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                     Text(
                       "Quantia de Alunos : $totalAlunos alunos",
                       style: const TextStyle(
-                        color: Colors.black,
+                        color: AppCores.sobrePrimaria,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
-                    const Divider(color: Colors.black),
+                    const Divider(color: AppCores.sobrePrimaria),
                     const SizedBox(height: 8),
 
                     // Lista de até 10 nomes
@@ -221,7 +222,7 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
                           child: const Text(
                             "MAIS",
                             style: TextStyle(
-                              color: Colors.black87,
+                              color: AppCores.sobrePrimaria,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
                               decoration: TextDecoration.underline,
@@ -248,12 +249,12 @@ class _MenuPersonalTelaState extends State<MenuPersonalTela> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          const Icon(Icons.person, color: Colors.black),
+          const Icon(Icons.person, color: AppCores.sobrePrimaria),
           const SizedBox(width: 8),
           Text(
             nome,
             style: const TextStyle(
-              color: Colors.black,
+              color: AppCores.sobrePrimaria,
               fontSize: 15,
               fontWeight: FontWeight.w500,
             ),

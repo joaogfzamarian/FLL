@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 
 class ChatTela extends StatefulWidget {
   const ChatTela({super.key});
@@ -31,12 +32,12 @@ class _ChatTelaState extends State<ChatTela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Chat', style: TextStyle(color: Colors.white)),
+        backgroundColor: AppCores.fundo,
+        title: const Text('Chat', style: TextStyle(color: AppCores.texto)),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.amber),
+        iconTheme: const IconThemeData(color: AppCores.primaria),
       ),
       body: Column(
         children: [
@@ -53,13 +54,13 @@ class _ChatTelaState extends State<ChatTela> {
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
-                      color: msg.isMeu ? Colors.amber : Colors.grey[800],
+                      color: msg.isMeu ? AppCores.primaria : AppCores.superficieAlta,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       msg.texto,
                       style: TextStyle(
-                        color: msg.isMeu ? Colors.black : Colors.white,
+                        color: msg.isMeu ? AppCores.sobrePrimaria : AppCores.texto,
                       ),
                     ),
                   ),
@@ -67,26 +68,26 @@ class _ChatTelaState extends State<ChatTela> {
               },
             ),
           ),
-          const Divider(height: 1, color: Colors.white24),
+          const Divider(height: 1, color: AppCores.textoFraco),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            color: Colors.black,
+            color: AppCores.fundo,
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
                     controller: _mensagemController,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: AppCores.texto),
                     decoration: const InputDecoration(
                       hintText: 'Digite sua mensagem...',
-                      hintStyle: TextStyle(color: Colors.white54),
+                      hintStyle: TextStyle(color: AppCores.textoSuave),
                       border: InputBorder.none,
                     ),
                     onSubmitted: (_) => _enviarMensagem(),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.send, color: Colors.amber),
+                  icon: const Icon(Icons.send, color: AppCores.primaria),
                   onPressed: _enviarMensagem,
                 ),
               ],

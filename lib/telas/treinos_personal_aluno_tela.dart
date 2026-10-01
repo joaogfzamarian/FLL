@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -55,48 +56,48 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
       context: context,
       builder: (_) => StatefulBuilder(
         builder: (context, setStateSB) => AlertDialog(
-          backgroundColor: Colors.grey[800],
+          backgroundColor: AppCores.superficieAlta,
           title: Text(
             "Novo Treino (${diaSemana.toUpperCase()})",
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppCores.texto),
           ),
           content: SingleChildScrollView(
             child: Column(
               children: [
                 TextField(
                   controller: nomeController,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: AppCores.texto),
                   decoration: const InputDecoration(
                     labelText: "Nome do treino",
-                    labelStyle: TextStyle(color: Colors.white70),
+                    labelStyle: TextStyle(color: AppCores.textoSecundario),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.amber),
+                      borderSide: BorderSide(color: AppCores.primaria),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white70),
+                      borderSide: BorderSide(color: AppCores.textoSecundario),
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
                 TextField(
                   controller: descController,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: AppCores.texto),
                   maxLines: 3,
                   decoration: const InputDecoration(
                     labelText: "Descrição",
-                    labelStyle: TextStyle(color: Colors.white70),
+                    labelStyle: TextStyle(color: AppCores.textoSecundario),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.amber),
+                      borderSide: BorderSide(color: AppCores.primaria),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white70),
+                      borderSide: BorderSide(color: AppCores.textoSecundario),
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 const Text(
                   "Exercícios",
-                  style: TextStyle(color: Colors.amber, fontSize: 16),
+                  style: TextStyle(color: AppCores.primaria, fontSize: 16),
                 ),
                 const SizedBox(height: 8),
 
@@ -107,7 +108,7 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                     final ex = entry.value;
 
                     return Card(
-                      color: Colors.grey[700],
+                      color: AppCores.superficieAlta,
                       margin: const EdgeInsets.symmetric(vertical: 6),
                       child: Padding(
                         padding: const EdgeInsets.all(8),
@@ -115,26 +116,26 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                           children: [
                             TextField(
                               controller: ex["nome"],
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: AppCores.texto),
                               decoration: const InputDecoration(
                                 labelText: "Nome",
-                                labelStyle: TextStyle(color: Colors.white70),
+                                labelStyle: TextStyle(color: AppCores.textoSecundario),
                               ),
                             ),
                             TextField(
                               controller: ex["series"],
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: AppCores.texto),
                               decoration: const InputDecoration(
                                 labelText: "Séries",
-                                labelStyle: TextStyle(color: Colors.white70),
+                                labelStyle: TextStyle(color: AppCores.textoSecundario),
                               ),
                             ),
                             TextField(
                               controller: ex["obs"],
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: AppCores.texto),
                               decoration: const InputDecoration(
                                 labelText: "Observação",
-                                labelStyle: TextStyle(color: Colors.white70),
+                                labelStyle: TextStyle(color: AppCores.textoSecundario),
                               ),
                             ),
                             Align(
@@ -166,9 +167,9 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                       });
                     });
                   },
-                  icon: const Icon(Icons.add, color: Colors.amber),
+                  icon: const Icon(Icons.add, color: AppCores.primaria),
                   label: const Text("Adicionar exercício",
-                      style: TextStyle(color: Colors.amber)),
+                      style: TextStyle(color: AppCores.primaria)),
                 ),
               ],
             ),
@@ -176,7 +177,7 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Cancelar", style: TextStyle(color: Colors.amber)),
+              child: const Text("Cancelar", style: TextStyle(color: AppCores.primaria)),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -208,8 +209,8 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.amber,
-                foregroundColor: Colors.black,
+                backgroundColor: AppCores.primaria,
+                foregroundColor: AppCores.sobrePrimaria,
               ),
               child: const Text("Salvar"),
             )
@@ -227,21 +228,21 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
         title: Text("Treinos de ${widget.nomeAluno}",
-            style: const TextStyle(color: Colors.amber)),
-        backgroundColor: Colors.black,
+            style: const TextStyle(color: AppCores.primaria)),
+        backgroundColor: AppCores.fundo,
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
-          indicatorColor: Colors.amber,
+          indicatorColor: AppCores.primaria,
           tabs: dias
               .map((d) => Tab(
             child: Text(
               d.toUpperCase(),
               style: const TextStyle(
-                color: Colors.amber,
+                color: AppCores.primaria,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -271,7 +272,7 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                 return Center(
                   child: Text(
                     "Nenhum treino para ${dia.toUpperCase()}",
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: AppCores.texto),
                   ),
                 );
               }
@@ -286,7 +287,7 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                   List<Map<String, dynamic>>.from(data['exercicios'] ?? []);
 
                   return Card(
-                    color: Colors.grey[900],
+                    color: AppCores.superficie,
                     margin: const EdgeInsets.only(bottom: 16),
                     shape:
                     RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -294,21 +295,21 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
                       title: Text(
                         (data['nome'] ?? "-").toString(),
                         style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                            color: AppCores.texto, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
                         (data['descricao'] ?? "-").toString(),
-                        style: const TextStyle(color: Colors.white70),
+                        style: const TextStyle(color: AppCores.textoSecundario),
                       ),
                       children: [
                         ...exercicios.map((ex) => ListTile(
                           title: Text(
                             (ex['nome'] ?? "-").toString(),
-                            style: const TextStyle(color: Colors.amber),
+                            style: const TextStyle(color: AppCores.primaria),
                           ),
                           subtitle: Text(
                             "Séries: ${ex['series'] ?? '-'}\nObs: ${ex['observacao'] ?? '-'}",
-                            style: const TextStyle(color: Colors.white70),
+                            style: const TextStyle(color: AppCores.textoSecundario),
                           ),
                         )),
                         Row(
@@ -331,8 +332,8 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
         }).toList(),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.amber,
-        child: const Icon(Icons.add, color: Colors.black),
+        backgroundColor: AppCores.primaria,
+        child: const Icon(Icons.add, color: AppCores.sobrePrimaria),
         onPressed: () {
           final dia = dias[_tabController.index];
           _cadastrarTreino(dia);
@@ -348,16 +349,16 @@ class _TreinosPersonalAlunoTelaState extends State<TreinosPersonalAlunoTela>
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: AppCores.superficie,
         title: const Text("Excluir treino?",
-            style: TextStyle(color: Colors.amber)),
+            style: TextStyle(color: AppCores.primaria)),
         content: const Text("Esta ação não pode ser desfeita.",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: AppCores.textoSecundario)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
             child:
-            const Text("Cancelar", style: TextStyle(color: Colors.amber)),
+            const Text("Cancelar", style: TextStyle(color: AppCores.primaria)),
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -37,7 +38,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
   Widget build(BuildContext context) {
     if (uid == null) {
       return const Center(
-        child: Text('Não autenticado', style: TextStyle(color: Colors.white)),
+        child: Text('Não autenticado', style: TextStyle(color: AppCores.texto)),
       );
     }
 
@@ -50,7 +51,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return const Center(
-              child: CircularProgressIndicator(color: Colors.amber));
+              child: CircularProgressIndicator(color: AppCores.primaria));
         }
 
         if (!snap.hasData || snap.data!.docs.isEmpty) {
@@ -94,8 +95,8 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
       padding: const EdgeInsets.only(bottom: 16),
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.amber,
-          foregroundColor: Colors.black,
+          backgroundColor: AppCores.primaria,
+          foregroundColor: AppCores.sobrePrimaria,
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
@@ -109,7 +110,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
           if (snapData.docs.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text('Nenhum progresso encontrado para exportar.'),
-              backgroundColor: Colors.amber,
+              backgroundColor: AppCores.primaria,
             ));
             return;
           }
@@ -166,26 +167,26 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: Colors.amber,
+        color: AppCores.primaria,
         borderRadius: BorderRadius.circular(14),
       ),
       child: DropdownButtonHideUnderline(
         child: Row(
           children: [
-            const Icon(Icons.stacked_line_chart, color: Colors.black),
+            const Icon(Icons.stacked_line_chart, color: AppCores.sobrePrimaria),
             const SizedBox(width: 12),
             Expanded(
               child: DropdownButton<String>(
                 value: medidaSelecionada,
                 isExpanded: true,
-                dropdownColor: Colors.black,
-                style: const TextStyle(color: Colors.white),
-                iconEnabledColor: Colors.black,
+                dropdownColor: AppCores.fundo,
+                style: const TextStyle(color: AppCores.texto),
+                iconEnabledColor: AppCores.sobrePrimaria,
                 items: metricas.map((m) {
                   return DropdownMenuItem(
                     value: m,
                     child:
-                    Text(m, style: const TextStyle(color: Colors.white)),
+                    Text(m, style: const TextStyle(color: AppCores.texto)),
                   );
                 }).toList(),
                 onChanged: (v) {
@@ -246,7 +247,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
                       return (index >= 0 && index < labels.length)
                           ? Text(labels[index],
                           style: const TextStyle(
-                              color: Colors.white70, fontSize: 10))
+                              color: AppCores.textoSecundario, fontSize: 10))
                           : const SizedBox();
                     }),
               ),
@@ -257,7 +258,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
                     getTitlesWidget: (v, _) => Text(
                       "${v.toInt()} cm",
                       style: const TextStyle(
-                          color: Colors.white70, fontSize: 10),
+                          color: AppCores.textoSecundario, fontSize: 10),
                     )),
               ),
             ),
@@ -266,13 +267,13 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
                 spots: spots,
                 isCurved: true,
                 color: medidaSelecionada == "peso"
-                    ? Colors.amber
+                    ? AppCores.primaria
                     : Colors.cyanAccent,
                 dotData: const FlDotData(show: true),
                 belowBarData: BarAreaData(
                   show: true,
                   color: (medidaSelecionada == "peso"
-                      ? Colors.amber
+                      ? AppCores.primaria
                       : Colors.cyanAccent)
                       .withOpacity(0.25),
                 ),
@@ -292,7 +293,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: AppCores.superficie,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -300,7 +301,7 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
           children: [
             Text(titulo,
                 style: const TextStyle(
-                    color: Colors.amber,
+                    color: AppCores.primaria,
                     fontSize: 18,
                     fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
@@ -314,11 +315,11 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Icon(Icons.fitness_center, color: Colors.amber, size: 60),
+          Icon(Icons.fitness_center, color: AppCores.primaria, size: 60),
           SizedBox(height: 16),
           Text(
             'Nenhum progresso registrado',
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: AppCores.textoSecundario),
           ),
         ],
       ),
@@ -350,8 +351,8 @@ class _ProgressoAlunoTelaState extends State<ProgressoAlunoTela> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(nome, style: const TextStyle(color: Colors.white)),
-          Text(valor, style: const TextStyle(color: Colors.white)),
+          Text(nome, style: const TextStyle(color: AppCores.texto)),
+          Text(valor, style: const TextStyle(color: AppCores.texto)),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -87,7 +88,7 @@ class _PersonalizacaoDadosPerfilAlunoState
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: const Text("Nenhuma alteração para salvar."),
-            backgroundColor: Colors.amber[700],
+            backgroundColor: AppCores.primariaEscura,
             behavior: SnackBarBehavior.floating,
           ),
         );
@@ -169,21 +170,21 @@ class _PersonalizacaoDadosPerfilAlunoState
     return Scaffold(
       appBar: AppBar(
         title: const Text("Editar Dados"),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: _confirmarCancelar,
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.amber,
+            color: AppCores.primaria,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Form(
@@ -217,8 +218,8 @@ class _PersonalizacaoDadosPerfilAlunoState
                       child: ElevatedButton(
                         onPressed: _confirmarCancelar,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[800],
-                          foregroundColor: Colors.white,
+                          backgroundColor: AppCores.superficieAlta,
+                          foregroundColor: AppCores.texto,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -235,8 +236,8 @@ class _PersonalizacaoDadosPerfilAlunoState
                       child: ElevatedButton(
                         onPressed: _salvarAlteracoes,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.amber,
+                          backgroundColor: AppCores.fundo,
+                          foregroundColor: AppCores.primaria,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -272,12 +273,12 @@ class _PersonalizacaoDadosPerfilAlunoState
         controller: controller,
         keyboardType: tipo,
         inputFormatters: mascara != null ? [mascara] : [],
-        style: const TextStyle(color: Colors.black),
+        style: const TextStyle(color: AppCores.sobrePrimaria),
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: const TextStyle(color: Colors.black),
+          labelStyle: const TextStyle(color: AppCores.sobrePrimaria),
           filled: true,
-          fillColor: Colors.amber[200],
+          fillColor: AppCores.primariaClara,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),

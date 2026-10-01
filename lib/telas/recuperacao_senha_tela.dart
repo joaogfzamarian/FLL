@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import '../servicos/auth_service.dart';
 
 class RecuperacaoSenhaTela extends StatefulWidget {
@@ -23,7 +24,7 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('E-mail de recuperação enviado!'),
-          backgroundColor: Colors.amber,
+          backgroundColor: AppCores.primaria,
           behavior: SnackBarBehavior.floating,
         ));
         Navigator.pushReplacementNamed(context, '/login');
@@ -41,15 +42,15 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
 
   InputDecoration _dec(String label, IconData icone) => InputDecoration(
     hintText: label,
-    hintStyle: const TextStyle(color: Colors.black54),
-    prefixIcon: Icon(icone, color: Colors.black),
+    hintStyle: const TextStyle(color: AppCores.sobrePrimariaSuave),
+    prefixIcon: Icon(icone, color: AppCores.sobrePrimaria),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),
-      borderSide: const BorderSide(color: Colors.black54),
+      borderSide: const BorderSide(color: AppCores.sobrePrimariaSuave),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),
-      borderSide: const BorderSide(color: Colors.black, width: 2),
+      borderSide: const BorderSide(color: AppCores.sobrePrimaria, width: 2),
     ),
     contentPadding:
     const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
@@ -58,26 +59,26 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 50),
-            const Icon(Icons.lock, size: 80, color: Colors.amber),
+            const Icon(Icons.lock, size: 80, color: AppCores.primaria),
             const SizedBox(height: 20),
             const Text(
               "Esqueceu a Senha?",
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
-                color: Colors.amber,
+                color: AppCores.primaria,
               ),
             ),
             const SizedBox(height: 10),
             const Text(
               "Não se preocupe, enviaremos\num e-mail para você",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white70, fontSize: 14),
+              style: TextStyle(color: AppCores.textoSecundario, fontSize: 14),
             ),
             const SizedBox(height: 40),
 
@@ -85,7 +86,7 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
               child: Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                  color: Colors.amber,
+                  color: AppCores.primaria,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
@@ -115,8 +116,8 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
                         child: ElevatedButton(
                           onPressed: _carregando ? null : _enviarRecuperacao,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.amber,
+                            backgroundColor: AppCores.fundo,
+                            foregroundColor: AppCores.primaria,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -128,7 +129,7 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
                             height: 20,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              color: Colors.amber,
+                              color: AppCores.primaria,
                             ),
                           )
                               : const Text(
@@ -147,7 +148,7 @@ class _RecuperacaoSenhaTelaState extends State<RecuperacaoSenhaTela> {
                         child: const Text(
                           "Voltar ao Login",
                           style: TextStyle(
-                            color: Colors.black87,
+                            color: AppCores.sobrePrimaria,
                             fontSize: 15,
                             decoration: TextDecoration.underline,
                           ),

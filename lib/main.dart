@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'tema/cores.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; 
@@ -74,12 +75,17 @@ class MeuAplicativo extends StatelessWidget {
       },
 
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black,
-        primaryColor: Colors.amber,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppCores.primaria,
+          primary: AppCores.primaria,
+          surface: AppCores.fundo,
+        ),
+        scaffoldBackgroundColor: AppCores.fundo,
+        primaryColor: AppCores.primaria,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-          iconTheme: IconThemeData(color: Colors.amber),
+          backgroundColor: AppCores.fundo,
+          titleTextStyle: TextStyle(color: AppCores.texto, fontSize: 20),
+          iconTheme: IconThemeData(color: AppCores.primaria),
         ),
       ),
 

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../tema/cores.dart';
 import 'package:flutter/material.dart';
 import 'treinos_personal_aluno_tela.dart';
 import 'dietas_personal_aluno_tela.dart';
@@ -40,19 +41,19 @@ class AlunoDetalhesTela extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: AppCores.superficie,
         title: const Text(
           "Confirmar",
-          style: TextStyle(color: Colors.amber),
+          style: TextStyle(color: AppCores.primaria),
         ),
         content: const Text(
           "Tem certeza que deseja desvincular este aluno?",
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: AppCores.textoSecundario),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Cancelar", style: TextStyle(color: Colors.amber)),
+            child: const Text("Cancelar", style: TextStyle(color: AppCores.primaria)),
           ),
           ElevatedButton(
             onPressed: () {
@@ -61,7 +62,7 @@ class AlunoDetalhesTela extends StatelessWidget {
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
+              foregroundColor: AppCores.sobrePrimaria,
             ),
             child: const Text("Desvincular"),
           ),
@@ -73,11 +74,11 @@ class AlunoDetalhesTela extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
         title: Text("Aluno: $nomeAluno"),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
@@ -92,7 +93,7 @@ class AlunoDetalhesTela extends StatelessWidget {
             return const Center(
               child: Text(
                 "Dados do aluno não encontrados",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppCores.texto),
               ),
             );
           }
@@ -108,17 +109,17 @@ class AlunoDetalhesTela extends StatelessWidget {
               children: [
                 // 🔹 Exibir informações básicas do aluno
                 Card(
-                  color: Colors.grey[900],
+                  color: AppCores.superficie,
                   margin: const EdgeInsets.only(bottom: 20),
                   child: ListTile(
                     leading: const CircleAvatar(
-                      backgroundColor: Colors.amber,
-                      child: Icon(Icons.person, color: Colors.black),
+                      backgroundColor: AppCores.primaria,
+                      child: Icon(Icons.person, color: AppCores.sobrePrimaria),
                     ),
                     title: Text(
                       aluno["nome"] ?? "-",
                       style: const TextStyle(
-                        color: Colors.amber,
+                        color: AppCores.primaria,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -128,11 +129,11 @@ class AlunoDetalhesTela extends StatelessWidget {
                       children: [
                         Text(
                           "ID: $alunoIdCurto...",
-                          style: const TextStyle(color: Colors.white70),
+                          style: const TextStyle(color: AppCores.textoSecundario),
                         ),
                         Text(
                           "Idade: ${aluno["idade"] ?? "-"}",
-                          style: const TextStyle(color: Colors.white70),
+                          style: const TextStyle(color: AppCores.textoSecundario),
                         ),
                         const SizedBox(height: 4),
 
@@ -141,12 +142,12 @@ class AlunoDetalhesTela extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 "Objetivo: ${aluno["objetivo"] ?? "-"}",
-                                style: const TextStyle(color: Colors.white70),
+                                style: const TextStyle(color: AppCores.textoSecundario),
                               ),
                             ),
                             GestureDetector(
                               onTap: () => _editarObjetivo(context, alunoId),
-                              child: const Icon(Icons.edit, color: Colors.amber, size: 20),
+                              child: const Icon(Icons.edit, color: AppCores.primaria, size: 20),
                             ),
                           ],
                         ),
@@ -220,7 +221,7 @@ class AlunoDetalhesTela extends StatelessWidget {
                     onPressed: () => _confirmarDesvinculo(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
+                      foregroundColor: AppCores.sobrePrimaria,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -252,11 +253,11 @@ class AlunoDetalhesTela extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFF121212),
+              color: AppCores.superficie,
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
+                  color: Colors.black.withOpacity(0.12),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -268,7 +269,7 @@ class AlunoDetalhesTela extends StatelessWidget {
                 const Text(
                   "Editar Objetivo",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppCores.texto,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -278,19 +279,19 @@ class AlunoDetalhesTela extends StatelessWidget {
 
                 TextField(
                   controller: objetivoController,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: AppCores.texto),
                   decoration: InputDecoration(
                     labelText: "Novo objetivo",
-                    labelStyle: const TextStyle(color: Colors.white70),
+                    labelStyle: const TextStyle(color: AppCores.textoSecundario),
                     filled: true,
-                    fillColor: const Color(0xFF1E1E1E),
+                    fillColor: AppCores.superficieAlta,
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.amber, width: 1.5),
+                      borderSide: const BorderSide(color: AppCores.primaria, width: 1.5),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.amber, width: 2),
+                      borderSide: const BorderSide(color: AppCores.primaria, width: 2),
                     ),
                   ),
                 ),
@@ -312,7 +313,7 @@ class AlunoDetalhesTela extends StatelessWidget {
                         ),
                         child: const Text(
                           "Cancelar",
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          style: TextStyle(fontSize: 16, color: AppCores.texto),
                         ),
                       ),
                     ),
@@ -332,7 +333,7 @@ class AlunoDetalhesTela extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
+                          backgroundColor: AppCores.primaria,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -342,7 +343,7 @@ class AlunoDetalhesTela extends StatelessWidget {
                           "Salvar",
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.black,
+                            color: AppCores.sobrePrimaria,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -367,7 +368,7 @@ class AlunoDetalhesTela extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         decoration: BoxDecoration(
-          color: Colors.amber,
+          color: AppCores.primaria,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -375,19 +376,19 @@ class AlunoDetalhesTela extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icone, size: 28, color: Colors.black),
+                Icon(icone, size: 28, color: AppCores.sobrePrimaria),
                 const SizedBox(width: 12),
                 Text(
                   titulo,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: AppCores.sobrePrimaria,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
-            const Icon(Icons.arrow_forward_ios, color: Colors.black),
+            const Icon(Icons.arrow_forward_ios, color: AppCores.sobrePrimaria),
           ],
         ),
       ),

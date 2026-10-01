@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import '../tema/cores.dart';
 import 'package:flutter/material.dart';
 import '../modelos/treino.dart';
 import '../servicos/treino_service.dart';
@@ -120,12 +121,12 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
 
   InputDecoration _dec(String label) => InputDecoration(
     labelText: label,
-    labelStyle: const TextStyle(color: Colors.amber),
+    labelStyle: const TextStyle(color: AppCores.primaria),
     enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.amber),
+      borderSide: BorderSide(color: AppCores.primaria),
     ),
     focusedBorder: const OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.amber, width: 2),
+      borderSide: BorderSide(color: AppCores.primaria, width: 2),
     ),
   );
 
@@ -141,14 +142,14 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         margin: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
-          color: selecionado ? Colors.amber : Colors.grey[900],
+          color: selecionado ? AppCores.primaria : AppCores.superficie,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.amber, width: 1),
+          border: Border.all(color: AppCores.primaria, width: 1),
         ),
         child: Text(
           dia.toUpperCase(),
           style: TextStyle(
-            color: selecionado ? Colors.black : Colors.amber,
+            color: selecionado ? AppCores.sobrePrimaria : AppCores.primaria,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -173,7 +174,7 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
               // 🔥 Seletor de dia da semana
               const Text(
                 "Dia da Semana",
-                style: TextStyle(color: Colors.amber, fontSize: 18),
+                style: TextStyle(color: AppCores.primaria, fontSize: 18),
               ),
               const SizedBox(height: 8),
               SingleChildScrollView(
@@ -187,7 +188,7 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
 
               TextFormField(
                 controller: _nome,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
                 decoration: _dec('Nome do treino'),
                 validator: (v) =>
                 v == null || v.isEmpty ? 'Informe o nome' : null,
@@ -195,14 +196,14 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _desc,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
                 decoration: _dec('Descrição'),
                 maxLines: 3,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _freq,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
                 decoration: _dec('Frequência (ex.: 3x por semana)'),
                 validator: (v) =>
                 v == null || v.isEmpty ? 'Informe a frequência' : null,
@@ -210,7 +211,7 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
               const SizedBox(height: 16),
               const Text(
                 "Exercícios",
-                style: TextStyle(color: Colors.amber, fontSize: 18),
+                style: TextStyle(color: AppCores.primaria, fontSize: 18),
               ),
               const SizedBox(height: 8),
               Column(
@@ -218,7 +219,7 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
                   final i = entry.key;
                   final ex = entry.value;
                   return Card(
-                    color: Colors.grey[900],
+                    color: AppCores.superficie,
                     margin: const EdgeInsets.symmetric(vertical: 6),
                     child: Padding(
                       padding: const EdgeInsets.all(12),
@@ -226,7 +227,7 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
                         children: [
                           TextFormField(
                             controller: ex["nome"],
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: AppCores.texto),
                             decoration: _dec("Nome do exercício"),
                             validator: (v) => v == null || v.isEmpty
                                 ? "Informe o nome"
@@ -235,13 +236,13 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
                           const SizedBox(height: 8),
                           TextFormField(
                             controller: ex["series"],
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: AppCores.texto),
                             decoration: _dec("Séries (ex.: 3x12)"),
                           ),
                           const SizedBox(height: 8),
                           TextFormField(
                             controller: ex["obs"],
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: AppCores.texto),
                             decoration: _dec("Observação"),
                           ),
                           const SizedBox(height: 8),
@@ -273,16 +274,16 @@ class _TreinoCriarTelaState extends State<TreinoCriarTela> {
                     });
                   });
                 },
-                icon: const Icon(Icons.add, color: Colors.amber),
+                icon: const Icon(Icons.add, color: AppCores.primaria),
                 label: const Text("Adicionar exercício",
-                    style: TextStyle(color: Colors.amber)),
+                    style: TextStyle(color: AppCores.primaria)),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _salvar,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
+                  backgroundColor: AppCores.primaria,
+                  foregroundColor: AppCores.sobrePrimaria,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
                 child: Text(editando ? 'Salvar alterações' : 'Criar treino'),

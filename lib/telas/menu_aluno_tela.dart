@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -155,13 +156,13 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
     ];
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppCores.fundo,
         elevation: 0,
         title: Text(
           titulos[_indiceSelecionado],
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+          style: const TextStyle(color: AppCores.texto, fontSize: 20),
         ),
         actions: [
           Padding(
@@ -169,8 +170,8 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
             child: GestureDetector(
               onTap: () => setState(() => _indiceSelecionado = 4),
               child: const CircleAvatar(
-                backgroundColor: Colors.amber,
-                child: Icon(Icons.person, color: Colors.black),
+                backgroundColor: AppCores.primaria,
+                child: Icon(Icons.person, color: AppCores.sobrePrimaria),
               ),
             ),
           ),
@@ -179,9 +180,9 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
       body: telas[_indiceSelecionado],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceSelecionado,
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.amber,
-        unselectedItemColor: Colors.white70,
+        backgroundColor: AppCores.fundo,
+        selectedItemColor: AppCores.primaria,
+        unselectedItemColor: AppCores.textoSecundario,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Início"),
@@ -209,7 +210,7 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
     if (user == null) {
       return const Center(
           child: Text("Usuário não autenticado",
-              style: TextStyle(color: Colors.white)));
+              style: TextStyle(color: AppCores.texto)));
     }
 
     return SingleChildScrollView(
@@ -251,13 +252,13 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
-              child: CircularProgressIndicator(color: Colors.amber));
+              child: CircularProgressIndicator(color: AppCores.primaria));
         }
 
         final docs = snapshot.data!.docs;
         if (docs.isEmpty) {
           return const Text("Nenhum treino atribuído.",
-              style: TextStyle(color: Colors.white70));
+              style: TextStyle(color: AppCores.textoSecundario));
         }
 
         return Column(
@@ -270,8 +271,8 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
               child: ElevatedButton(
                 onPressed: () => setState(() => _indiceSelecionado = 1),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
+                  backgroundColor: AppCores.primaria,
+                  foregroundColor: AppCores.sobrePrimaria,
                 ),
                 child: const Text("VER TODOS OS TREINOS"),
               ),
@@ -296,13 +297,13 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
-              child: CircularProgressIndicator(color: Colors.amber));
+              child: CircularProgressIndicator(color: AppCores.primaria));
         }
 
         final docs = snapshot.data!.docs;
         if (docs.isEmpty) {
           return const Text("Nenhuma dieta atribuída.",
-              style: TextStyle(color: Colors.white70));
+              style: TextStyle(color: AppCores.textoSecundario));
         }
 
         return Column(
@@ -318,8 +319,8 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
               child: ElevatedButton(
                 onPressed: () => setState(() => _indiceSelecionado = 2),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
+                  backgroundColor: AppCores.primaria,
+                  foregroundColor: AppCores.sobrePrimaria,
                 ),
                 child: const Text("VER TODAS AS DIETAS"),
               ),
@@ -370,12 +371,12 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
             Row(
               children: [
                 const Icon(Icons.restaurant_menu,
-                    color: Colors.amber, size: 18),
+                    color: AppCores.primaria, size: 18),
                 const SizedBox(width: 6),
                 Text(
                   nomes[periodo] ?? "Refeição",
                   style: const TextStyle(
-                      color: Colors.white,
+                      color: AppCores.texto,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
@@ -386,13 +387,13 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white38),
+                        border: Border.all(color: AppCores.textoFraco),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
                         "Hoje",
                         style:
-                        TextStyle(color: Colors.white, fontSize: 12),
+                        TextStyle(color: AppCores.texto, fontSize: 12),
                       ),
                     ),
                   ),
@@ -405,14 +406,14 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
                 child: Row(
                   children: [
                     const Icon(Icons.calendar_today,
-                        size: 14, color: Colors.white70),
+                        size: 14, color: AppCores.textoSecundario),
                     const SizedBox(width: 4),
                     Text(
                       "${data.day.toString().padLeft(2, '0')}/"
                           "${data.month.toString().padLeft(2, '0')}/"
                           "${data.year}",
                       style: const TextStyle(
-                          color: Colors.white70, fontSize: 12),
+                          color: AppCores.textoSecundario, fontSize: 12),
                     ),
                   ],
                 ),
@@ -421,13 +422,13 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
             Text(
               texto,
               style:
-              const TextStyle(color: Colors.white70, fontSize: 14),
+              const TextStyle(color: AppCores.textoSecundario, fontSize: 14),
             ),
 
             Container(
               margin: const EdgeInsets.only(top: 8),
               height: 1,
-              color: Colors.white12,
+              color: AppCores.divisor,
             )
           ],
         ),
@@ -449,19 +450,19 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(descricao,
-            style: const TextStyle(color: Colors.white, fontSize: 16)),
+            style: const TextStyle(color: AppCores.texto, fontSize: 16)),
         if (data != null)
           Text(
             "${data.day}/${data.month}/${data.year}",
-            style: const TextStyle(color: Colors.white70, fontSize: 12),
+            style: const TextStyle(color: AppCores.textoSecundario, fontSize: 12),
           ),
         const SizedBox(height: 6),
         ...exercicios.take(2).map((e) => Text("• ${e['nome']}",
-            style: const TextStyle(color: Colors.white70))),
+            style: const TextStyle(color: AppCores.textoSecundario))),
         Container(
           margin: const EdgeInsets.only(top: 10),
           height: 1,
-          color: Colors.white12,
+          color: AppCores.divisor,
         ),
       ],
     );
@@ -475,7 +476,7 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: AppCores.superficie,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -483,7 +484,7 @@ class _MenuAlunoTelaState extends State<MenuAlunoTela>
         children: [
           Text(titulo,
               style: const TextStyle(
-                  color: Colors.amber,
+                  color: AppCores.primaria,
                   fontSize: 18,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),

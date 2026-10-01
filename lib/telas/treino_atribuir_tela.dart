@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../tema/cores.dart';
 import 'package:flutter/material.dart';
 import '../modelos/treino.dart';
 import '../servicos/treino_service.dart';
@@ -14,7 +15,7 @@ class TreinoAtribuirTela extends StatelessWidget {
         body: Center(
           child: Text(
             'Treino inválido',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: AppCores.texto),
           ),
         ),
       );
@@ -38,7 +39,7 @@ class TreinoAtribuirTela extends StatelessWidget {
             return const Center(
               child: Text(
                 'Nenhum aluno cadastrado',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppCores.texto),
               ),
             );
           }
@@ -54,23 +55,23 @@ class TreinoAtribuirTela extends StatelessWidget {
               final jaAtribuido = treino.alunoId == alunoId;
 
               return Card(
-                color: Colors.grey[900],
+                color: AppCores.superficie,
                 child: ListTile(
                   title: Text(
                     nome.toString(),
                     style: TextStyle(
-                      color: jaAtribuido ? Colors.green : Colors.white,
+                      color: jaAtribuido ? Colors.green : AppCores.texto,
                       fontWeight:
                       jaAtribuido ? FontWeight.bold : FontWeight.normal,
                     ),
                   ),
                   subtitle: Text(
                     "ID: $alunoId",
-                    style: const TextStyle(color: Colors.white70),
+                    style: const TextStyle(color: AppCores.textoSecundario),
                   ),
                   trailing: jaAtribuido
                       ? const Icon(Icons.check_circle, color: Colors.green)
-                      : const Icon(Icons.person_add, color: Colors.amber),
+                      : const Icon(Icons.person_add, color: AppCores.primaria),
                   onTap: () async {
                     await TreinoService.instancia
                         .atribuirTreino(treino.id, alunoId);

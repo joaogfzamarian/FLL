@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import '../tema/cores.dart';
 import 'package:flutter/material.dart';
 import '../modelos/treino.dart';
 import '../servicos/treino_service.dart';
@@ -42,7 +43,7 @@ class _TreinoPersonalListaTelaState extends State<TreinoPersonalListaTela>
       child: Text(
         label.toUpperCase(),
         style: const TextStyle(
-          color: Colors.amber,
+          color: AppCores.primaria,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -56,20 +57,20 @@ class _TreinoPersonalListaTelaState extends State<TreinoPersonalListaTela>
     if (uid == null) {
       return const Scaffold(
         body: Center(
-          child: Text('Não autenticado', style: TextStyle(color: Colors.white)),
+          child: Text('Não autenticado', style: TextStyle(color: AppCores.texto)),
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Meus Treinos', style: TextStyle(color: Colors.amber)),
+        backgroundColor: AppCores.fundo,
+        title: const Text('Meus Treinos', style: TextStyle(color: AppCores.primaria)),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
-          indicatorColor: Colors.amber,
+          indicatorColor: AppCores.primaria,
           tabs: dias.map((d) => _tabItem(d)).toList(),
         ),
       ),
@@ -91,7 +92,7 @@ class _TreinoPersonalListaTelaState extends State<TreinoPersonalListaTela>
                 return Center(
                   child: Text(
                     'Sem treinos para ${dia.toUpperCase()}',
-                    style: const TextStyle(color: Colors.white70),
+                    style: const TextStyle(color: AppCores.textoSecundario),
                   ),
                 );
               }
@@ -103,15 +104,15 @@ class _TreinoPersonalListaTelaState extends State<TreinoPersonalListaTela>
                 itemBuilder: (context, i) {
                   final t = lista[i];
                   return Card(
-                    color: Colors.grey[900],
+                    color: AppCores.superficie,
                     child: ListTile(
                       title: Text(
                         t.nome,
-                        style: const TextStyle(color: Colors.amber),
+                        style: const TextStyle(color: AppCores.primaria),
                       ),
                       subtitle: Text(
                         '${t.frequencia} • ${t.exercicios.length} exercícios',
-                        style: const TextStyle(color: Colors.white70),
+                        style: const TextStyle(color: AppCores.textoSecundario),
                       ),
                       trailing: PopupMenuButton<String>(
                         onSelected: (v) async {
@@ -161,8 +162,8 @@ class _TreinoPersonalListaTelaState extends State<TreinoPersonalListaTela>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, '/treino-criar'),
-        backgroundColor: Colors.amber,
-        child: const Icon(Icons.add, color: Colors.black),
+        backgroundColor: AppCores.primaria,
+        child: const Icon(Icons.add, color: AppCores.sobrePrimaria),
       ),
     );
   }

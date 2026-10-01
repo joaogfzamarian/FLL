@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'aluno_detalhes_tela.dart';
@@ -15,18 +16,18 @@ class AlunosTela extends StatelessWidget {
         body: Center(
           child: Text(
             "Não autenticado",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: AppCores.texto),
           ),
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
         title: const Text(""),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -44,7 +45,7 @@ class AlunosTela extends StatelessWidget {
             return const Center(
               child: Text(
                 "Erro ao carregar alunos",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppCores.texto),
               ),
             );
           }
@@ -62,7 +63,7 @@ class AlunosTela extends StatelessWidget {
             return const Center(
               child: Text(
                 "Nenhum aluno vinculado",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppCores.texto),
               ),
             );
           }
@@ -78,7 +79,7 @@ class AlunosTela extends StatelessWidget {
                 child: Text(
                   "Total de alunos vinculados: $totalAlunos",
                   style: const TextStyle(
-                    color: Colors.amber,
+                    color: AppCores.primaria,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -99,28 +100,28 @@ class AlunosTela extends StatelessWidget {
                     final alunoId = alunoDoc.id;
 
                     return Card(
-                      color: Colors.grey[900],
+                      color: AppCores.superficie,
                       margin: const EdgeInsets.only(bottom: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: ListTile(
                         leading: const CircleAvatar(
-                          backgroundColor: Colors.amber,
-                          child: Icon(Icons.person, color: Colors.black),
+                          backgroundColor: AppCores.primaria,
+                          child: Icon(Icons.person, color: AppCores.sobrePrimaria),
                         ),
                         title: Text(
                           nome,
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: AppCores.texto,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         subtitle: Text(
                           "$idade • $objetivo",
-                          style: const TextStyle(color: Colors.white70),
+                          style: const TextStyle(color: AppCores.textoSecundario),
                         ),
-                        trailing: const Icon(Icons.arrow_forward_ios, color: Colors.amber),
+                        trailing: const Icon(Icons.arrow_forward_ios, color: AppCores.primaria),
                         onTap: () {
                           Navigator.push(
                             context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -47,21 +48,21 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: AppCores.superficie,
         title: Text(
           "Adicionar em ${periodo.toUpperCase()}",
-          style: const TextStyle(color: Colors.amber),
+          style: const TextStyle(color: AppCores.primaria),
         ),
         content: TextField(
           controller: textoController,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppCores.texto),
           decoration: const InputDecoration(
             labelText: "Descrição da refeição",
-            labelStyle: TextStyle(color: Colors.white70),
+            labelStyle: TextStyle(color: AppCores.textoSecundario),
             enabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white54)),
+            OutlineInputBorder(borderSide: BorderSide(color: AppCores.textoSuave)),
             focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.amber)),
+            OutlineInputBorder(borderSide: BorderSide(color: AppCores.primaria)),
           ),
           maxLines: null,
         ),
@@ -69,12 +70,12 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
           TextButton(
             onPressed: () => Navigator.pop(context),
             child:
-            const Text("Cancelar", style: TextStyle(color: Colors.amber)),
+            const Text("Cancelar", style: TextStyle(color: AppCores.primaria)),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber,
-              foregroundColor: Colors.black,
+              backgroundColor: AppCores.primaria,
+              foregroundColor: AppCores.sobrePrimaria,
             ),
             onPressed: () async {
               if (textoController.text.trim().isEmpty) return;
@@ -104,19 +105,19 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: AppCores.superficie,
         title: const Text("Editar Refeição",
-            style: TextStyle(color: Colors.amber)),
+            style: TextStyle(color: AppCores.primaria)),
         content: TextField(
           controller: textoController,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppCores.texto),
           decoration: const InputDecoration(
             labelText: "Descrição",
-            labelStyle: TextStyle(color: Colors.white70),
+            labelStyle: TextStyle(color: AppCores.textoSecundario),
             enabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white54)),
+            OutlineInputBorder(borderSide: BorderSide(color: AppCores.textoSuave)),
             focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.amber)),
+            OutlineInputBorder(borderSide: BorderSide(color: AppCores.primaria)),
           ),
           maxLines: null,
         ),
@@ -124,7 +125,7 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
           TextButton(
             onPressed: () => Navigator.pop(context),
             child:
-            const Text("Cancelar", style: TextStyle(color: Colors.amber)),
+            const Text("Cancelar", style: TextStyle(color: AppCores.primaria)),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -139,8 +140,8 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber,
-              foregroundColor: Colors.black,
+              backgroundColor: AppCores.primaria,
+              foregroundColor: AppCores.sobrePrimaria,
             ),
             child: const Text("Salvar"),
           ),
@@ -153,22 +154,22 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: AppCores.superficie,
         title:
-        const Text("Excluir?", style: TextStyle(color: Colors.amber)),
+        const Text("Excluir?", style: TextStyle(color: AppCores.primaria)),
         content: const Text(
           "Isso não pode ser desfeito.",
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: AppCores.textoSecundario),
         ),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(context, false),
               child:
-              const Text("Cancelar", style: TextStyle(color: Colors.amber))),
+              const Text("Cancelar", style: TextStyle(color: AppCores.primaria))),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, foregroundColor: Colors.white),
+                backgroundColor: Colors.red, foregroundColor: AppCores.sobrePrimaria),
             child: const Text("Excluir"),
           ),
         ],
@@ -185,24 +186,24 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
         title: Text("Dietas — ${widget.nomeAluno}"),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
         bottom: TabBar(
           controller: tabController,
-          indicatorColor: Colors.amber,
-          labelColor: Colors.amber,
-          unselectedLabelColor: Colors.white70,
+          indicatorColor: AppCores.primaria,
+          labelColor: AppCores.primaria,
+          unselectedLabelColor: AppCores.textoSecundario,
           tabs: [
             for (final label in periodosLabel) Tab(text: label),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.amber,
-        child: const Icon(Icons.add, color: Colors.black),
+        backgroundColor: AppCores.primaria,
+        child: const Icon(Icons.add, color: AppCores.sobrePrimaria),
         onPressed: () {
           final periodo = periodos[tabController.index];
           _cadastrarRefeicao(periodo);
@@ -238,7 +239,7 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
           return const Center(
             child: Text(
               "Nenhuma refeição cadastrada",
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: AppCores.textoSecundario),
             ),
           );
         }
@@ -251,7 +252,7 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
             final data = d.data() as Map<String, dynamic>;
 
             return Card(
-              color: Colors.grey[900],
+              color: AppCores.superficie,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -260,14 +261,14 @@ class _DietasPersonalAlunoTelaState extends State<DietasPersonalAlunoTela>
                 title: Text(
                   data["texto"] ?? "",
                   style:
-                  const TextStyle(color: Colors.white, fontSize: 16),
+                  const TextStyle(color: AppCores.texto, fontSize: 16),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
                       icon:
-                      const Icon(Icons.edit, color: Colors.amber),
+                      const Icon(Icons.edit, color: AppCores.primaria),
                       onPressed: () =>
                           _editarRefeicao(d.id, data["texto"] ?? ""),
                     ),

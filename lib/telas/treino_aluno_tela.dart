@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import '../tema/cores.dart';
 import 'package:flutter/material.dart';
 import '../servicos/treino_service.dart';
 import '../modelos/treino.dart';
@@ -46,7 +47,7 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
       child: Text(
         label.toUpperCase(),
         style: const TextStyle(
-          color: Colors.amber,
+          color: AppCores.primaria,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -60,10 +61,10 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: AppCores.superficie,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Colors.amber,
+          color: AppCores.primaria,
           width: 1.2,
         ),
       ),
@@ -79,7 +80,7 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
           Text(
             t.nome,
             style: const TextStyle(
-              color: Colors.amber,
+              color: AppCores.primaria,
               fontSize: 20, // maior como antes
               fontWeight: FontWeight.bold,
             ),
@@ -91,7 +92,7 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
             Text(
               t.descricao,
               style: const TextStyle(
-                color: Colors.white70,
+                color: AppCores.textoSecundario,
                 fontSize: 16,
               ),
             ),
@@ -102,7 +103,7 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
               child: Text(
                 "Frequência: ${t.frequencia}",
                 style: const TextStyle(
-                  color: Colors.white54,
+                  color: AppCores.textoSuave,
                   fontSize: 14,
                 ),
               ),
@@ -116,7 +117,7 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
               child: Text(
                 "${e['nome'] ?? ''} - ${e['series'] ?? ''}\nObs: ${e['observacao'] ?? ''}",
                 style: const TextStyle(
-                  color: Colors.white70,
+                  color: AppCores.textoSecundario,
                   fontSize: 15, // maior como antes
                 ),
               ),
@@ -140,20 +141,20 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
       return const Center(
         child: Text(
           'Não autenticado',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: AppCores.texto),
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Meus Treinos', style: TextStyle(color: Colors.amber)),
+        backgroundColor: AppCores.fundo,
+        title: const Text('Meus Treinos', style: TextStyle(color: AppCores.primaria)),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
-          indicatorColor: Colors.amber,
+          indicatorColor: AppCores.primaria,
           tabs: dias.map((d) => _tabItem(d)).toList(),
         ),
       ),
@@ -173,7 +174,7 @@ class _TreinoAlunoTelaState extends State<TreinoAlunoTela>
                 return Center(
                   child: Text(
                     "Nenhum treino para ${dia.toUpperCase()}",
-                    style: const TextStyle(color: Colors.white70),
+                    style: const TextStyle(color: AppCores.textoSecundario),
                   ),
                 );
               }

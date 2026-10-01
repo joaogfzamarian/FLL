@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../servicos/auth_service.dart';
@@ -93,15 +94,15 @@ class _LoginTelaState extends State<LoginTela> {
 
   InputDecoration _dec(String label, IconData icone) => InputDecoration(
     hintText: label,
-    hintStyle: const TextStyle(color: Colors.amber),
-    prefixIcon: Icon(icone, color: Colors.amber),
+    hintStyle: const TextStyle(color: AppCores.primaria),
+    prefixIcon: Icon(icone, color: AppCores.primaria),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),
-      borderSide: const BorderSide(color: Colors.amber),
+      borderSide: const BorderSide(color: AppCores.primaria),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),
-      borderSide: const BorderSide(color: Colors.amber, width: 2),
+      borderSide: const BorderSide(color: AppCores.primaria, width: 2),
     ),
     contentPadding:
     const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
@@ -110,19 +111,19 @@ class _LoginTelaState extends State<LoginTela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: AppCores.primaria,
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 30),
-            Image.asset("imagens/LogoVazada.png", width: 180),
+            Image.asset("imagens/logo_branca.png", width: 180),
             const SizedBox(height: 10),
             const Text(
-              "FITNESS APP",
+              "TREINO • DIETA • EVOLUÇÃO",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: AppCores.sobrePrimaria,
               ),
             ),
             const SizedBox(height: 30),
@@ -130,7 +131,7 @@ class _LoginTelaState extends State<LoginTela> {
               child: Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                  color: Colors.black,
+                  color: AppCores.fundo,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
@@ -145,7 +146,7 @@ class _LoginTelaState extends State<LoginTela> {
                       children: [
                         TextFormField(
                           controller: _emailController,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: AppCores.texto),
                           keyboardType: TextInputType.emailAddress,
                           decoration: _dec("E-mail", Icons.email),
                           validator: (v) => v == null || !v.contains("@")
@@ -155,13 +156,13 @@ class _LoginTelaState extends State<LoginTela> {
                         const SizedBox(height: 16),
                         TextFormField(
                           controller: _senhaController,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: AppCores.texto),
                           obscureText: !_mostrarSenha, // ALTERADO
                           decoration: _dec("Senha", Icons.lock).copyWith(
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _mostrarSenha ? Icons.visibility : Icons.visibility_off,
-                                color: Colors.amber,
+                                color: AppCores.primaria,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -181,7 +182,7 @@ class _LoginTelaState extends State<LoginTela> {
                             child: const Text(
                               "Esqueci minha senha?",
                               style: TextStyle(
-                                color: Colors.amber,
+                                color: AppCores.primaria,
                                 fontSize: 14,
                                 decoration: TextDecoration.underline,
                               ),
@@ -194,11 +195,11 @@ class _LoginTelaState extends State<LoginTela> {
                               setState(() => _lembrarMe = v ?? false),
                           title: const Text(
                             "Lembrar-me",
-                            style: TextStyle(color: Colors.white70),
+                            style: TextStyle(color: AppCores.textoSecundario),
                           ),
                           controlAffinity: ListTileControlAffinity.leading,
-                          activeColor: Colors.amber,
-                          checkColor: Colors.black,
+                          activeColor: AppCores.primaria,
+                          checkColor: AppCores.sobrePrimaria,
                           contentPadding: EdgeInsets.zero,
                         ),
                         const SizedBox(height: 16),
@@ -207,8 +208,8 @@ class _LoginTelaState extends State<LoginTela> {
                           child: ElevatedButton(
                             onPressed: _carregando ? null : _entrar,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.amber,
-                              foregroundColor: Colors.black,
+                              backgroundColor: AppCores.primaria,
+                              foregroundColor: AppCores.sobrePrimaria,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
@@ -221,7 +222,7 @@ class _LoginTelaState extends State<LoginTela> {
                               height: 20,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                color: Colors.black,
+                                color: AppCores.sobrePrimaria,
                               ),
                             )
                                 : const Text(
@@ -239,7 +240,7 @@ class _LoginTelaState extends State<LoginTela> {
                           child: const Text(
                             "Criar conta",
                             style: TextStyle(
-                              color: Colors.amber,
+                              color: AppCores.primaria,
                               fontSize: 15,
                               decoration: TextDecoration.underline,
                             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 
 class DietaPersonalTela extends StatelessWidget {
   const DietaPersonalTela({super.key});
@@ -6,15 +7,15 @@ class DietaPersonalTela extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppCores.fundo,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.amber),
+          icon: const Icon(Icons.arrow_back, color: AppCores.primaria),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Dieta do Aluno', style: TextStyle(color: Colors.white)),
+        title: const Text('Dieta do Aluno', style: TextStyle(color: AppCores.texto)),
         centerTitle: true,
       ),
       body: ListView(
@@ -76,9 +77,9 @@ class DietaPersonalTela extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: AppCores.superficie,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.amber.withOpacity(0.6)),
+        border: Border.all(color: AppCores.primaria.withOpacity(0.6)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +87,7 @@ class DietaPersonalTela extends StatelessWidget {
           Text(
             titulo,
             style: const TextStyle(
-              color: Colors.amber,
+              color: AppCores.primaria,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -97,7 +98,7 @@ class DietaPersonalTela extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
                 alimento,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
               ),
             ),
           ),
@@ -105,8 +106,8 @@ class DietaPersonalTela extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: TextButton.icon(
               onPressed: onEditar,
-              icon: const Icon(Icons.edit, color: Colors.amber),
-              label: const Text('Editar', style: TextStyle(color: Colors.amber)),
+              icon: const Icon(Icons.edit, color: AppCores.primaria),
+              label: const Text('Editar', style: TextStyle(color: AppCores.primaria)),
             ),
           ),
         ],

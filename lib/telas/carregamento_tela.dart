@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 
 class CarregamentoTela extends StatefulWidget {
   const CarregamentoTela({super.key});
@@ -22,14 +23,14 @@ class _CarregamentoTelaState extends State<CarregamentoTela> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFFFD740), Color(0xFFFF8F00)],
+            colors: [AppCores.primaria, AppCores.primariaEscura],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
         child: Center(
           child: Image.asset(
-            'imagens/LogoVazada.png',
+            'imagens/logo_branca.png',
             width: 200,
           ),
         ),

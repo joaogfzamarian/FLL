@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'personalizacao_dados_perfil_aluno.dart';
@@ -87,7 +88,7 @@ class PerfilAlunoTela extends StatelessWidget {
       return const Center(
         child: Text(
           "Não autenticado",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: AppCores.texto),
         ),
       );
     }
@@ -102,7 +103,7 @@ class PerfilAlunoTela extends StatelessWidget {
           return const Center(
             child: Text(
               "Dados do aluno não encontrados",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: AppCores.texto),
             ),
           );
         }
@@ -136,7 +137,7 @@ class PerfilAlunoTela extends StatelessWidget {
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.amber,
+                color: AppCores.primaria,
                 borderRadius: BorderRadius.circular(16),
               ),
 
@@ -158,15 +159,15 @@ class PerfilAlunoTela extends StatelessWidget {
                           errorBuilder: (_, __, ___) =>
                           const CircleAvatar(
                             radius: 60,
-                            backgroundColor: Colors.black,
-                            child: Icon(Icons.person, size: 60, color: Colors.amber),
+                            backgroundColor: AppCores.fundo,
+                            child: Icon(Icons.person, size: 60, color: AppCores.primaria),
                           ),
                         ),
                       )
                           : const CircleAvatar(
                         radius: 60,
-                        backgroundColor: Colors.black,
-                        child: Icon(Icons.person, size: 60, color: Colors.amber),
+                        backgroundColor: AppCores.fundo,
+                        child: Icon(Icons.person, size: 60, color: AppCores.primaria),
                       ),
                     ),
                   ),
@@ -187,7 +188,7 @@ class PerfilAlunoTela extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: AppCores.fundo,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -195,12 +196,12 @@ class PerfilAlunoTela extends StatelessWidget {
                       children: [
                         const Text(
                           "Meu código (UID):",
-                          style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: AppCores.primaria, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 6),
                         SelectableText(
                           user.uid,
-                          style: const TextStyle(color: Colors.white, fontSize: 13),
+                          style: const TextStyle(color: AppCores.texto, fontSize: 13),
                         ),
                       ],
                     ),
@@ -225,12 +226,12 @@ class PerfilAlunoTela extends StatelessWidget {
                           width: double.infinity,
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.black,
+                            color: AppCores.fundo,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Text(
                             "Ainda não vinculado a um personal",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: AppCores.texto),
                           ),
                         );
                       }
@@ -241,12 +242,12 @@ class PerfilAlunoTela extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: AppCores.fundo,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
                           "Personal vinculado: ${personal?["nome"] ?? personalId.substring(0, 6)}",
-                          style: const TextStyle(color: Colors.amber),
+                          style: const TextStyle(color: AppCores.primaria),
                         ),
                       );
                     },
@@ -266,8 +267,8 @@ class PerfilAlunoTela extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.amber,
+                        backgroundColor: AppCores.fundo,
+                        foregroundColor: AppCores.primaria,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -288,8 +289,8 @@ class PerfilAlunoTela extends StatelessWidget {
                     child: ElevatedButton.icon(
                       onPressed: () => _sair(context),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.amber,
+                        backgroundColor: AppCores.fundo,
+                        foregroundColor: AppCores.primaria,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -328,14 +329,14 @@ class _infoItem extends StatelessWidget {
           Text(
             titulo,
             style: const TextStyle(
-              color: Colors.black,
+              color: AppCores.sobrePrimaria,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
             valor,
             style: const TextStyle(
-              color: Colors.black,
+              color: AppCores.sobrePrimaria,
             ),
           ),
         ],

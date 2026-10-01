@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'personalizacao_dados_perfil_personal.dart';
@@ -80,7 +81,7 @@ class PerfilPersonalTela extends StatelessWidget {
 
     if (user == null) {
       return const Center(
-        child: Text("Não autenticado", style: TextStyle(color: Colors.white)),
+        child: Text("Não autenticado", style: TextStyle(color: AppCores.texto)),
       );
     }
 
@@ -111,7 +112,7 @@ class PerfilPersonalTela extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.amber,
+              color: AppCores.primaria,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -128,14 +129,14 @@ class PerfilPersonalTela extends StatelessWidget {
                         fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) => const CircleAvatar(
                           radius: 60,
-                          backgroundColor: Colors.black,
-                          child: Icon(Icons.person, size: 60, color: Colors.amber),
+                          backgroundColor: AppCores.fundo,
+                          child: Icon(Icons.person, size: 60, color: AppCores.primaria),
                         ),
                       ))
                       : const CircleAvatar(
                     radius: 60,
-                    backgroundColor: Colors.black,
-                    child: Icon(Icons.person, size: 60, color: Colors.amber),
+                    backgroundColor: AppCores.fundo,
+                    child: Icon(Icons.person, size: 60, color: AppCores.primaria),
                   ),
                 ),
 
@@ -156,17 +157,17 @@ class PerfilPersonalTela extends StatelessWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: AppCores.fundo,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text("Meu código (UID):",
-                          style: TextStyle(color: Colors.amber)),
+                          style: TextStyle(color: AppCores.primaria)),
                       SelectableText(
                         user.uid,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: AppCores.texto),
                       )
                     ],
                   ),
@@ -187,8 +188,8 @@ class PerfilPersonalTela extends StatelessWidget {
                     icon: const Icon(Icons.edit),
                     label: const Text("Editar Dados"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.amber,
+                      backgroundColor: AppCores.fundo,
+                      foregroundColor: AppCores.primaria,
                       padding: const EdgeInsets.all(14),
                     ),
                   ),
@@ -203,8 +204,8 @@ class PerfilPersonalTela extends StatelessWidget {
                     icon: const Icon(Icons.logout),
                     label: const Text("Sair"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.amber,
+                      backgroundColor: AppCores.fundo,
+                      foregroundColor: AppCores.primaria,
                       padding: const EdgeInsets.all(14),
                     ),
                   ),
@@ -225,9 +226,9 @@ class PerfilPersonalTela extends StatelessWidget {
         children: [
           Text(label,
               style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.black)),
+                  fontWeight: FontWeight.bold, color: AppCores.sobrePrimaria)),
           Text(value?.toString() ?? "-",
-              style: const TextStyle(color: Colors.black)),
+              style: const TextStyle(color: AppCores.sobrePrimaria)),
         ],
       ),
     );

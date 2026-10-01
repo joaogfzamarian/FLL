@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -10,10 +11,10 @@ class DietaAlunoTela extends StatelessWidget {
     final uid = FirebaseAuth.instance.currentUser?.uid;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
         title: const Text(""),
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -33,7 +34,7 @@ class DietaAlunoTela extends StatelessWidget {
             return const Center(
               child: Text(
                 "Nenhuma dieta atribuída",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppCores.texto),
               ),
             );
           }
@@ -78,7 +79,7 @@ class DietaAlunoTela extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: AppCores.superficie,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -87,7 +88,7 @@ class DietaAlunoTela extends StatelessWidget {
           Text(
             titulo,
             style: const TextStyle(
-              color: Colors.amber,
+              color: AppCores.primaria,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -99,7 +100,7 @@ class DietaAlunoTela extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
                 "• $e",
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
               ),
             ),
           ),

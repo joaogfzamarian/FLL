@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../modelos/progresso.dart';
@@ -95,12 +96,12 @@ class _ProgressoPersonalAlunoTelaState
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.dark(
-              primary: Colors.amber,
-              onPrimary: Colors.black,
-              surface: Colors.black,
-              onSurface: Colors.white,
+              primary: AppCores.primaria,
+              onPrimary: AppCores.sobrePrimaria,
+              surface: AppCores.fundo,
+              onSurface: AppCores.texto,
             ),
-            dialogBackgroundColor: Colors.black,
+            dialogBackgroundColor: AppCores.fundo,
           ),
           child: child!,
         );
@@ -114,12 +115,12 @@ class _ProgressoPersonalAlunoTelaState
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.black,
+          backgroundColor: AppCores.fundo,
           title: const Text('Confirmar Cadastro',
-              style: TextStyle(color: Colors.amber)),
+              style: TextStyle(color: AppCores.primaria)),
           content: const Text(
             'Deseja realmente salvar este progresso?',
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: AppCores.textoSecundario),
           ),
           actions: [
             TextButton(
@@ -128,8 +129,8 @@ class _ProgressoPersonalAlunoTelaState
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.amber,
-                foregroundColor: Colors.black,
+                backgroundColor: AppCores.primaria,
+                foregroundColor: AppCores.sobrePrimaria,
               ),
               onPressed: () async {
                 Navigator.pop(context);
@@ -150,7 +151,7 @@ class _ProgressoPersonalAlunoTelaState
       if (peso <= 0 || altura <= 0) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Preencha peso e altura válidos.'),
-          backgroundColor: Colors.amber,
+          backgroundColor: AppCores.primaria,
         ));
         return;
       }
@@ -178,7 +179,7 @@ class _ProgressoPersonalAlunoTelaState
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Progresso cadastrado com sucesso!'),
-          backgroundColor: Colors.amber,
+          backgroundColor: AppCores.primaria,
         ));
       }
     } catch (e) {
@@ -193,9 +194,9 @@ class _ProgressoPersonalAlunoTelaState
       context: context,
       builder: (_) {
         return AlertDialog(
-          backgroundColor: Colors.black,
+          backgroundColor: AppCores.fundo,
           title: const Text('Registrar Progresso',
-              style: TextStyle(color: Colors.amber)),
+              style: TextStyle(color: AppCores.primaria)),
           content: _formulario(),
           actions: [
             TextButton(
@@ -204,7 +205,7 @@ class _ProgressoPersonalAlunoTelaState
             ),
             ElevatedButton(
               onPressed: _confirmarCadastroProgresso,
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+              style: ElevatedButton.styleFrom(backgroundColor: AppCores.primaria),
               child: const Text('Salvar'),
             ),
           ],
@@ -221,15 +222,15 @@ class _ProgressoPersonalAlunoTelaState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text('Data da Medição:',
-                style: TextStyle(color: Colors.amber)),
+                style: TextStyle(color: AppCores.primaria)),
             TextButton.icon(
               onPressed: () => _selecionarData(context),
-              icon: const Icon(Icons.calendar_today, color: Colors.amber),
+              icon: const Icon(Icons.calendar_today, color: AppCores.primaria),
               label: Text(
                 "${_dataSelecionada.day.toString().padLeft(2, '0')}/"
                     "${_dataSelecionada.month.toString().padLeft(2, '0')}/"
                     "${_dataSelecionada.year}",
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
               ),
             ),
           ],
@@ -238,20 +239,20 @@ class _ProgressoPersonalAlunoTelaState
         TextField(
           controller: _pesoController,
           keyboardType: TextInputType.number,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppCores.texto),
           decoration: const InputDecoration(
             labelText: 'Peso (kg)',
-            labelStyle: TextStyle(color: Colors.amber),
+            labelStyle: TextStyle(color: AppCores.primaria),
           ),
         ),
         const SizedBox(height: 8),
         TextField(
           controller: _alturaController,
           keyboardType: TextInputType.number,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppCores.texto),
           decoration: const InputDecoration(
             labelText: 'Altura (m)',
-            labelStyle: TextStyle(color: Colors.amber),
+            labelStyle: TextStyle(color: AppCores.primaria),
           ),
         ),
         const SizedBox(height: 8),
@@ -261,10 +262,10 @@ class _ProgressoPersonalAlunoTelaState
             child: TextField(
               controller: e.value,
               keyboardType: TextInputType.number,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppCores.texto),
               decoration: InputDecoration(
                 labelText: '${e.key} (cm)',
-                labelStyle: const TextStyle(color: Colors.amber),
+                labelStyle: const TextStyle(color: AppCores.primaria),
               ),
             ),
           ),
@@ -272,10 +273,10 @@ class _ProgressoPersonalAlunoTelaState
         TextField(
           controller: _obsController,
           maxLines: 2,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppCores.texto),
           decoration: const InputDecoration(
             labelText: 'Observações',
-            labelStyle: TextStyle(color: Colors.amber),
+            labelStyle: TextStyle(color: AppCores.primaria),
           ),
         ),
       ],
@@ -296,9 +297,9 @@ class _ProgressoPersonalAlunoTelaState
       context: context,
       builder: (_) {
         return AlertDialog(
-          backgroundColor: Colors.black,
+          backgroundColor: AppCores.fundo,
           title: const Text('Editar Progresso',
-              style: TextStyle(color: Colors.amber)),
+              style: TextStyle(color: AppCores.primaria)),
           content: _formulario(),
           actions: [
             TextButton(
@@ -311,7 +312,7 @@ class _ProgressoPersonalAlunoTelaState
             ),
             ElevatedButton(
               onPressed: () => _confirmarAtualizacao(id),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+              style: ElevatedButton.styleFrom(backgroundColor: AppCores.primaria),
               child: const Text('Salvar'),
             ),
           ],
@@ -340,7 +341,7 @@ class _ProgressoPersonalAlunoTelaState
     if (!mudou) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Nenhuma alteração detectada.'),
-        backgroundColor: Colors.amber,
+        backgroundColor: AppCores.primaria,
       ));
       Navigator.pop(context);
       return;
@@ -358,7 +359,7 @@ class _ProgressoPersonalAlunoTelaState
     Navigator.pop(context);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Progresso atualizado com sucesso!'),
-      backgroundColor: Colors.amber,
+      backgroundColor: AppCores.primaria,
     ));
   }
 
@@ -366,11 +367,11 @@ class _ProgressoPersonalAlunoTelaState
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.black,
+        backgroundColor: AppCores.fundo,
         title: const Text('Excluir Progresso',
             style: TextStyle(color: Colors.redAccent)),
         content: const Text('Deseja realmente excluir este registro?',
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: AppCores.textoSecundario)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -378,14 +379,14 @@ class _ProgressoPersonalAlunoTelaState
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
+                backgroundColor: Colors.redAccent, foregroundColor: AppCores.sobrePrimaria),
             onPressed: () async {
               await FirebaseFirestore.instance.collection('progresso').doc(id).delete();
               Navigator.pop(context);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Progresso excluído com sucesso!'),
-                backgroundColor: Colors.amber,
+                backgroundColor: AppCores.primaria,
               ));
             },
             child: const Text('Excluir'),
@@ -411,7 +412,7 @@ class _ProgressoPersonalAlunoTelaState
       final dataGeracao = DateTime.now();
 
       
-      final logo = await imageFromAssetBundle('imagens/LogoVazada.png');
+      final logo = await imageFromAssetBundle('imagens/logo_azul.png');
 
       pdf.addPage(
         pw.MultiPage(
@@ -433,14 +434,14 @@ class _ProgressoPersonalAlunoTelaState
                     style: pw.TextStyle(
                       fontSize: 22,
                       fontWeight: pw.FontWeight.bold,
-                      color: PdfColors.amber800,
+                      color: PdfColor.fromInt(0xFF0D47A1),
                     ),
                   ),
                   pw.SizedBox(width: 50), 
                 ],
               ),
               pw.SizedBox(height: 8),
-              pw.Divider(color: PdfColors.amber800, thickness: 1.5),
+              pw.Divider(color: PdfColor.fromInt(0xFF0D47A1), thickness: 1.5),
               pw.SizedBox(height: 8),
 
               pw.Text("Aluno: $aluno",
@@ -475,7 +476,7 @@ class _ProgressoPersonalAlunoTelaState
                   padding: const pw.EdgeInsets.all(10),
                   decoration: pw.BoxDecoration(
                     color: PdfColors.grey100,
-                    border: pw.Border.all(color: PdfColors.amber),
+                    border: pw.Border.all(color: PdfColor.fromInt(0xFF1565C0)),
                     borderRadius: pw.BorderRadius.circular(8),
                   ),
                   child: pw.Column(
@@ -486,7 +487,7 @@ class _ProgressoPersonalAlunoTelaState
                         style: pw.TextStyle(
                           fontSize: 14,
                           fontWeight: pw.FontWeight.bold,
-                          color: PdfColors.amber800,
+                          color: PdfColor.fromInt(0xFF0D47A1),
                         ),
                       ),
                       pw.SizedBox(height: 4),
@@ -526,11 +527,11 @@ class _ProgressoPersonalAlunoTelaState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
         title: Text("Progresso de ${widget.nomeAluno}"),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -542,12 +543,12 @@ class _ProgressoPersonalAlunoTelaState
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
             return const Center(
-                child: CircularProgressIndicator(color: Colors.amber));
+                child: CircularProgressIndicator(color: AppCores.primaria));
           }
           if (!snap.hasData || snap.data!.docs.isEmpty) {
             return const Center(
               child: Text('Nenhum progresso cadastrado ainda.',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: AppCores.texto)),
             );
           }
 
@@ -587,14 +588,14 @@ class _ProgressoPersonalAlunoTelaState
                     Text(
                       "Última atualização: ${ultimaData.day}/${ultimaData.month}/${ultimaData.year}",
                       style: const TextStyle(
-                          color: Colors.amber,
+                          color: AppCores.primaria,
                           fontSize: 14,
                           fontWeight: FontWeight.bold),
                     ),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.amber,
-                        foregroundColor: Colors.black,
+                        backgroundColor: AppCores.primaria,
+                        foregroundColor: AppCores.sobrePrimaria,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -608,8 +609,8 @@ class _ProgressoPersonalAlunoTelaState
                 const SizedBox(height: 8),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    foregroundColor: Colors.black,
+                    backgroundColor: AppCores.primaria,
+                    foregroundColor: AppCores.sobrePrimaria,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
@@ -624,7 +625,7 @@ class _ProgressoPersonalAlunoTelaState
                           .showSnackBar(const SnackBar(
                         content: Text(
                             'Nenhum progresso encontrado para exportar.'),
-                        backgroundColor: Colors.amber,
+                        backgroundColor: AppCores.primaria,
                       ));
                       return;
                     }
@@ -638,28 +639,28 @@ class _ProgressoPersonalAlunoTelaState
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   decoration: BoxDecoration(
-                    color: Colors.amber,
+                    color: AppCores.primaria,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: DropdownButtonHideUnderline(
                     child: Row(
                       children: [
-                        const Icon(Icons.stacked_line_chart, color: Colors.black),
+                        const Icon(Icons.stacked_line_chart, color: AppCores.sobrePrimaria),
                         const SizedBox(width: 12),
                         Expanded(
                           child: DropdownButton<String>(
                             value: _medidaSelecionada,
                             isExpanded: true,
-                            dropdownColor: Colors.black,
-                            iconEnabledColor: Colors.black,
-                            style: const TextStyle(color: Colors.white),
+                            dropdownColor: AppCores.fundo,
+                            iconEnabledColor: AppCores.sobrePrimaria,
+                            style: const TextStyle(color: AppCores.texto),
 
                             items: metricas.map((m) {
                               return DropdownMenuItem(
                                 value: m,
                                 child: Text(
                                   m,
-                                  style: const TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: AppCores.texto),
                                 ),
                               );
                             }).toList(),
@@ -684,7 +685,7 @@ class _ProgressoPersonalAlunoTelaState
                         gridData: FlGridData(show: false),
                         borderData: FlBorderData(
                             show: true,
-                            border: Border.all(color: Colors.amber, width: 1)),
+                            border: Border.all(color: AppCores.primaria, width: 1)),
                         titlesData: FlTitlesData(
                           leftTitles: AxisTitles(
                             sideTitles: SideTitles(
@@ -693,7 +694,7 @@ class _ProgressoPersonalAlunoTelaState
                                 getTitlesWidget: (v, _) => Text(
                                     v.toStringAsFixed(0),
                                     style: const TextStyle(
-                                        color: Colors.white70, fontSize: 12))),
+                                        color: AppCores.textoSecundario, fontSize: 12))),
                           ),
                           bottomTitles: AxisTitles(
                             sideTitles: SideTitles(
@@ -705,7 +706,7 @@ class _ProgressoPersonalAlunoTelaState
                                 }
                                 return Text(labelsDatas[idx],
                                     style: const TextStyle(
-                                        color: Colors.white70, fontSize: 10));
+                                        color: AppCores.textoSecundario, fontSize: 10));
                               },
                             ),
                           ),
@@ -718,7 +719,7 @@ class _ProgressoPersonalAlunoTelaState
                           LineChartBarData(
                             spots: pontos,
                             isCurved: true,
-                            color: Colors.amber,
+                            color: AppCores.primaria,
                             barWidth: 3,
                             dotData: FlDotData(show: true),
                             belowBarData: BarAreaData(show: false),
@@ -738,7 +739,7 @@ class _ProgressoPersonalAlunoTelaState
                     final medidas =
                     Map<String, dynamic>.from(d['medidas'] ?? {});
                     return Card(
-                      color: Colors.grey[900],
+                      color: AppCores.superficie,
                       margin: const EdgeInsets.only(bottom: 12),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -748,14 +749,14 @@ class _ProgressoPersonalAlunoTelaState
                             Text(
                               '📅 ${DateTime.parse(d['data']).day.toString().padLeft(2, '0')}/${DateTime.parse(d['data']).month.toString().padLeft(2, '0')}/${DateTime.parse(d['data']).year}',
                               style: const TextStyle(
-                                  color: Colors.amber, fontSize: 16),
+                                  color: AppCores.primaria, fontSize: 16),
                             ),
                             const SizedBox(height: 6),
                             Text('Peso: ${d['peso']} kg',
-                                style: const TextStyle(color: Colors.white)),
+                                style: const TextStyle(color: AppCores.texto)),
                             ...medidas.entries.map((m) => Text(
                               '${m.key}: ${m.value} cm',
-                              style: const TextStyle(color: Colors.white70),
+                              style: const TextStyle(color: AppCores.textoSecundario),
                             )),
                             if (d['observacoes'] != null &&
                                 d['observacoes'].toString().isNotEmpty)
@@ -763,7 +764,7 @@ class _ProgressoPersonalAlunoTelaState
                                 padding: const EdgeInsets.only(top: 4),
                                 child: Text('Obs: ${d['observacoes']}',
                                     style: const TextStyle(
-                                        color: Colors.white70,
+                                        color: AppCores.textoSecundario,
                                         fontStyle: FontStyle.italic)),
                               ),
                             const SizedBox(height: 8),
@@ -775,8 +776,8 @@ class _ProgressoPersonalAlunoTelaState
                                   _abrirModalAtualizar(id, d);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.amber,
-                                  foregroundColor: Colors.black,
+                                  backgroundColor: AppCores.primaria,
+                                  foregroundColor: AppCores.sobrePrimaria,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
@@ -809,17 +810,17 @@ class _ProgressoPersonalAlunoTelaState
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
           decoration: BoxDecoration(
-            color: ativo ? Colors.amber : Colors.grey[850],
+            color: ativo ? AppCores.primaria : AppCores.superficieAlta,
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: ativo ? Colors.amber : Colors.grey[700]!,
+              color: ativo ? AppCores.primaria : AppCores.borda,
               width: 1.2,
             ),
           ),
           child: Text(
             tipo,
             style: TextStyle(
-              color: ativo ? Colors.black : Colors.white,
+              color: ativo ? AppCores.sobrePrimaria : AppCores.texto,
               fontWeight: FontWeight.w600,
               fontSize: 14,
             ),

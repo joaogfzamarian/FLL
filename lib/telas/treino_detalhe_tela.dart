@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import '../modelos/treino.dart';
 
 class TreinoDetalheTela extends StatelessWidget {
@@ -17,15 +18,15 @@ class TreinoDetalheTela extends StatelessWidget {
         itemBuilder: (context, i) {
           final ex = treino.exercicios[i];
           return Card(
-            color: Colors.grey[850],
+            color: AppCores.superficieAlta,
             child: ListTile(
               title: Text(
                 ex['nome'] ?? 'Exercício',
-                style: const TextStyle(color: Colors.amber, fontSize: 16),
+                style: const TextStyle(color: AppCores.primaria, fontSize: 16),
               ),
               subtitle: Text(
                 "Séries: ${ex['series'] ?? '-'}\nObs: ${ex['observacao'] ?? '-'}",
-                style: const TextStyle(color: Colors.white70),
+                style: const TextStyle(color: AppCores.textoSecundario),
               ),
             ),
           );

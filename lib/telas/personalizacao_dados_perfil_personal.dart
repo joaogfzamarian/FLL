@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -132,11 +133,11 @@ class _PersonalizacaoDadosPerfilPersonalState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       appBar: AppBar(
         title: const Text("Editar Dados"),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.amber,
+        backgroundColor: AppCores.fundo,
+        foregroundColor: AppCores.primaria,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -147,7 +148,7 @@ class _PersonalizacaoDadosPerfilPersonalState
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.amber,
+            color: AppCores.primaria,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Form(
@@ -174,8 +175,8 @@ class _PersonalizacaoDadosPerfilPersonalState
                       child: ElevatedButton(
                         onPressed: () => Navigator.pop(context),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey[800],
-                            foregroundColor: Colors.white),
+                            backgroundColor: AppCores.superficieAlta,
+                            foregroundColor: AppCores.texto),
                         child: const Text("Cancelar"),
                       ),
                     ),
@@ -184,8 +185,8 @@ class _PersonalizacaoDadosPerfilPersonalState
                       child: ElevatedButton(
                         onPressed: _salvar,
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.amber),
+                            backgroundColor: AppCores.fundo,
+                            foregroundColor: AppCores.primaria),
                         child: const Text("Salvar Alterações"),
                       ),
                     ),
@@ -210,7 +211,7 @@ class _PersonalizacaoDadosPerfilPersonalState
         decoration: InputDecoration(
           labelText: label,
           filled: true,
-          fillColor: Colors.amber[200],
+          fillColor: AppCores.primariaClara,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),

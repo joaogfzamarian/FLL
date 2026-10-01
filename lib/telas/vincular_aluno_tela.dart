@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../tema/cores.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -66,12 +67,12 @@ class _VincularAlunoTelaState extends State<VincularAlunoTela> {
 
   InputDecoration _dec(String label) => InputDecoration(
     labelText: label,
-    labelStyle: const TextStyle(color: Colors.amber),
+    labelStyle: const TextStyle(color: AppCores.primaria),
     enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.amber),
+      borderSide: BorderSide(color: AppCores.primaria),
     ),
     focusedBorder: const OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.amber, width: 2),
+      borderSide: BorderSide(color: AppCores.primaria, width: 2),
     ),
   );
 
@@ -79,7 +80,7 @@ class _VincularAlunoTelaState extends State<VincularAlunoTela> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Vincular Aluno")),
-      backgroundColor: Colors.black,
+      backgroundColor: AppCores.fundo,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -88,7 +89,7 @@ class _VincularAlunoTelaState extends State<VincularAlunoTela> {
             children: [
               TextFormField(
                 controller: _uidAlunoController,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
                 decoration: _dec("UID do Aluno"),
                 validator: (v) =>
                 v == null || v.isEmpty ? "Digite o UID do aluno" : null,
@@ -96,18 +97,18 @@ class _VincularAlunoTelaState extends State<VincularAlunoTela> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _objetivoController,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: AppCores.texto),
                 decoration: _dec("Objetivo do Aluno"),
                 validator: (v) => null, 
               ),
               const SizedBox(height: 20),
               _carregando
-                  ? const CircularProgressIndicator(color: Colors.amber)
+                  ? const CircularProgressIndicator(color: AppCores.primaria)
                   : ElevatedButton(
                 onPressed: _vincularAluno,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
+                  backgroundColor: AppCores.primaria,
+                  foregroundColor: AppCores.sobrePrimaria,
                   padding: const EdgeInsets.symmetric(
                     vertical: 14,
                     horizontal: 32,
